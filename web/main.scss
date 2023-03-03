@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --total_week: 53;
+  --hour: 0
+}
+
+body {
+  overflow: hidden;
+  background-color: #000000;
+}
+
+#root_element {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  >div:nth-child(1) {
+    >div {
+      display: flex;
+
+      >div {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 15vh;
+        height: calc(100vh/var(--total_week));
+        background-color: #fdfdfd;
+        font-family: Consolas;
+        font-size: 1.7vh;
+
+        >div {
+          flex: 1 1 0px;
+          display: inline-flex;
+        }
+
+        >div:nth-child(3n-1) {
+          justify-content: center;
+        }
+
+        >div:not(:nth-child(3n-1)) {
+          align-self: flex-end;
+          color: #00000088;
+          font-size: 1.3vh;
+        }
+
+        >div:nth-child(3n-2) {
+          justify-content: left;
+          padding-left: 0.5vh;
+        }
+
+        >div:nth-child(3n) {
+          justify-content: right;
+          padding-right: 0.5vh;
+        }
+      }
+
+      >div[live] {
+        animation: color-change 2s infinite;
+        will-change: transform;
+      }
+
+      >div:nth-child(1) {
+        justify-content: center;
+        background-color: #0accc6;
+        width: 6vh;
+        color: #00000088;
+      }
+
+      >div:not(:first-child):not(:last-child) {
+        border-right-style: solid;
+        border-width: 1px;
+        border-color: #00000033;
+      }
+    }
+
+    >div:nth-child(1) {
+      >div {
+        justify-content: center;
+        background-color: #089994;
+        color: #00000088;
+      }
+    }
+  }
+
+  >div:nth-child(2) {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100vh;
+    justify-content: space-between;
+    padding-left: 4vh;
+    padding-right: 4vh;
+
+    >div {
+      display: inline;
+      font-family: Courier New;
+      flex: 1 0 0;
+      font-size: 4vh;
+      height: 0px;
+      color: #eee;
+    }
+
+    >div[point] {
+      color: #88f;
+    }
+
+    >#waves {
+      justify-self: center;
+      align-self: center;
+      position: absolute;
+      top: calc(100vh - (100vh/1440*var(--hour)) - 2.5vh);
+      width: 20vh;
+      z-index: -2;
+      filter: blur(0.2vh);
+    }
+  }
+}
+
+@keyframes color-change {
+  0% {
+    background-color: #fff;
+    color: #000;
+  }
+
+  50% {
+    background-color: #000;
+    color: #fff;
+  }
+
+  100% {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+
+.parallax>use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+  will-change: transform;
+}
+
+.parallax>use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
